@@ -5,7 +5,7 @@
  */
 
 
-const dbHost = process.env.DBHOST || 'http://127.0.0.1:5984/';
+const dbHost = process.env.dbHost || 'http://127.0.0.1:5984/';
 const dbUsers = process.env.dbUsers || dbHost+'tmdbproject_users';
 const dbComments =  process.env.dbComments || dbHost+'tmdbproject_comments';
 const request = require('request')
