@@ -1,0 +1,24 @@
+Your request for an API key has been approved. You can start using this key immediately.
+
+API Key: 63455146500b40d414bbca3a3f91c910
+
+An example request looks like:
+
+https://api.themoviedb.org/3/movie/550?api_key=63455146500b40d414bbca3a3f91c910
+We recently launched our TV API and would love some feedback if you have a chance to check it out.
+
+Useful Links
+
+Documentation: https://www.themoviedb.org/documentation/api
+Support forum: https://www.themoviedb.org/talk
+Wrappers & libraries: https://www.themoviedb.org/documentation/api/wrappers-libraries
+New feature and deprecation feed: https://www.themoviedb.org/developers
+If you have any questions, feel free to create a new discussion in our support forum.
+
+--
+The Movie Database Team
+https://www.themoviedb.org
+
+Facebook: https://www.facebook.com/themoviedb
+Twitter: https://twitter.com/themoviedb
+Blog: https://blog.themoviedb.org

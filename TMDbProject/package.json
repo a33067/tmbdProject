@@ -1,0 +1,32 @@
+{
+  "name": "tmdbproject",
+  "version": "1.0.0",
+  "description": "P.I pratic project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jcnasc@bitbucket.org/JVinhais/pi_201718.git"
+  },
+  "author": "Jorge Oliveira nº36929, Joana Nascimento nº33067, João Vinhais nº35390",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/JVinhais/pi_201718#readme",
+  "devDependencies": {
+    "eslint": "^4.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0-beta.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "handlebars": "^4.0.11",
+    "hbs": "^4.0.1",
+    "passport": "^0.4.0",
+    "request": "^2.83.0"
+  }
+}

@@ -1,0 +1,153 @@
+get movie
+//https://api.themoviedb.org/3/movie/36326?api_key=63455146500b40d414bbca3a3f91c910&language=pt-pt
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": "api.themoviedb.org",
+  "port": null,
+  "path": "/3/movie/36326?language=pt-pt&api_key=63455146500b40d414bbca3a3f91c910",
+  "headers": {}
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write("{}");
+req.end();
+
+--------------------//------------------------
+
+
+Lista de personagens de um filme
+//https://api.themoviedb.org/3/movie/36326/credits?api_key=63455146500b40d414bbca3a3f91c910
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": "api.themoviedb.org",
+  "port": null,
+  "path": "/3/movie/36326/credits?api_key=63455146500b40d414bbca3a3f91c910",
+  "headers": {}
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write("{}");
+req.end();
+
+--------------//-------------
+Participações de um actor
+//https://api.themoviedb.org/3/person/115287/movie_credits?api_key=63455146500b40d414bbca3a3f91c910&language=pt-pt
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": "api.themoviedb.org",
+  "port": null,
+  "path": "/3/person/115286/movie_credits?language=pt-pt&api_key=63455146500b40d414bbca3a3f91c910",
+  "headers": {}
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write("{}");
+req.end();
+
+
+-------------------//----------------------
+
+person details
+
+//https://api.themoviedb.org/3/person/115286?api_key=63455146500b40d414bbca3a3f91c910&language=pt-pt
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": "api.themoviedb.org",
+  "port": null,
+  "path": "/3/person/115286?language=pt-pt&api_key=63455146500b40d414bbca3a3f91c910",
+  "headers": {}
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write("{}");
+req.end();
+
+-------------------//------------------
+searchMovies
+
+//https://api.themoviedb.org/3/search/movie?api_key=63455146500b40d414bbca3a3f91c910&language=pt-pt&query=Ninja&page=1&include_adult=false
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": "api.themoviedb.org",
+  "port": null,
+  "path": "/3/search/movie?include_adult=false&page=1&query=Ninja&language=pt-pt&api_key=63455146500b40d414bbca3a3f91c910",
+  "headers": {}
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write("{}");
+req.end();

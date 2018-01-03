@@ -1,0 +1,44 @@
+{{#> layout}}
+<form action="/users/favourites/add" method="POST">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 col-md-2"></div>
+            <div class="col-3 col-md-6" >
+                <h3>Search Results:</h3>
+                <table class="table table-bordered">
+                    <thead class="thead-default">
+                        <tr>
+                            <th scope="col">&nbsp;</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Movie</th>
+                            {{#if user}}
+                                <th>
+                                    <button type="submit" class="btn btn-default btn-sm" >
+                                        <span class="glyphicon glyphicon-plus"></span> Add Favourites
+                                    </button><br><br>
+                                    <input type="text" id="favouritListName" name="favouritListName">
+                                </th>
+                            {{/if}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each results}}
+                            <tr>
+                                <td><a href="/movies/{{movieId}}"><img src="https://image.tmdb.org/t/p/w185{{poster_path}}"></a></td>
+                                <td><a href="/movies/{{movieId}}">{{movieId}}</a></td>
+                                <td>{{movieName}}</td>
+                                {{#if ../user}}
+                                    <td class="text-right">
+                                        <input type="checkbox" name="favourites" value='{"id":"{{movieId}}","movie":"{{movieName}}"}' />
+                                    </td>
+                                {{/if}}
+                            </tr>
+                        {{/each}} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+{{/layout}}
