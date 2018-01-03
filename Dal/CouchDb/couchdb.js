@@ -3,9 +3,11 @@
 /**
  * Array of User objects
  */
-const dbHost ='http://127.0.0.1:5984/';
-const dbUsers = dbHost+'tmdbproject_users';
-const dbComments = dbHost+'tmdbproject_comments';
+
+
+const dbHost = process.env.DBHOST || 'http://127.0.0.1:5984/';
+const dbUsers = process.env.dbUsers || dbHost+'tmdbproject_users';
+const dbComments =  process.env.dbComments || dbHost+'tmdbproject_comments';
 const request = require('request')
 var CouchDB = {}
 
