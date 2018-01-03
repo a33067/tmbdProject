@@ -1,0 +1,51 @@
+{{#> layout}}
+<div class="container">
+    <h3>Favourite Details</h3>
+    <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4">
+        <form  >
+            <div class="input-group">
+                <input type="hidden" value="{{favourites.name}}" id="oldName"  name="oldName">
+                <span class="input-group-addon" id="basic-addon3">List Name:</span>
+                <input type="text" class="form-control" name="favouritesName"  id="favouritesName" placeholder="{{favourites.name}}" aria-describedby="basic-addon1">
+                <input id="submit" type="button"  onclick="editFavourites(this)" value="Change Name">
+                
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Movie id</th>
+                            <th>Movie Name</th>
+                            {{#if user}}
+                            <th></th>
+                            {{/if}}
+                        </tr>
+                    </thead>    
+                    <tbody>
+                        {{#each favourites.movies}}
+                            <tr>
+                                <td><a href="/movies/{{id}}">{{id}}</a></td>
+                                <td>{{movie}}</td>
+                                {{#if ../user}}
+                                    <!-- <td><a href="/favouritesDetails/edit/{{id}}" class="btn btn-default btn-sm">Delete</a></td>-->
+                                    <td>
+                                        <form>
+                                            <input type="hidden" value="{{id}}" id="movie"  name="movie">
+                                            <input id="submit" type="button"  onclick="deleteFavouritesMovies(this)" value="Delete">
+                                        </form>
+                                    </td>
+                                {{/if}}
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{/layout}}

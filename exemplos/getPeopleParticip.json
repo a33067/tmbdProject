@@ -1,0 +1,50 @@
+{
+    "cast": [
+      {
+        "character": "Evil Dragon / João Paisagem / Mormom",
+        "credit_id": "52fe45de9251416c91041273",
+        "poster_path": "/xfw0BOKjaVoAeoy9hiWvQmBvjic.jpg",
+        "id": 36326,
+        "video": false,
+        "vote_count": 3,
+        "adult": false,
+        "backdrop_path": null,
+        "genre_ids": [
+          28,
+          35
+        ],
+        "original_language": "pt",
+        "original_title": "O Ninja das Caldas",
+        "popularity": 1.004117,
+        "title": "O Ninja das Caldas",
+        "vote_average": 5.7,
+        "overview": "Após um encontro com um pregador-ninja, sônia esposa-mulher e amante de Toní morreu.\r E dai em diante Toni busca de todas as maneiras imagináveis vinga-se de um grande inimigo - e irá descobrir que a justiça não é tão doce quando se pensava.",
+        "release_date": "2002-11-23"
+      }
+    ],
+    "crew": [
+      {
+        "id": 36326,
+        "department": "Writing",
+        "original_language": "pt",
+        "original_title": "O Ninja das Caldas",
+        "job": "Writer",
+        "overview": "Após um encontro com um pregador-ninja, sônia esposa-mulher e amante de Toní morreu.\r E dai em diante Toni busca de todas as maneiras imagináveis vinga-se de um grande inimigo - e irá descobrir que a justiça não é tão doce quando se pensava.",
+        "vote_count": 3,
+        "video": false,
+        "release_date": "2002-11-23",
+        "vote_average": 5.7,
+        "title": "O Ninja das Caldas",
+        "popularity": 1.004117,
+        "genre_ids": [
+          28,
+          35
+        ],
+        "backdrop_path": null,
+        "adult": false,
+        "poster_path": "/xfw0BOKjaVoAeoy9hiWvQmBvjic.jpg",
+        "credit_id": "52fe45de9251416c9104125f"
+      }
+    ],
+    "id": 115286
+  }

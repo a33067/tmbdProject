@@ -1,0 +1,29 @@
+h10 {
+    left: 0;
+    line-height: 50px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+.container{
+    padding-top: 100px
+}
+
+.nav{
+    color:#2F4F4F
+}
+
+h1,h2,h3,h4,h5,h6,h7,p,a,th{
+    font-family:verdana;
+}
+
+.search{
+  /*  margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;*/
+    margin: 5px;
+}
