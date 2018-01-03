@@ -6,7 +6,7 @@ module.exports = function(debug,router,url,movieController,searchController,acto
         if(req.user !== undefined){
             res.locals.user = req.user
         }
-        next(req,res) 
+        next() 
     })
     /**
      * Setup passport
