@@ -14,13 +14,14 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const flash = require('express-flash')
 
-const PORT = process && process.env && process.env.PORT || 8080
+
 //const debug = require('debug')('xpto');
 const debug = function(debugmodulename, debugmessage){ 
     var debugtime = (new Date()).toISOString().replace('T',' ').replace('Z','') ;
     console.log('[' + debugtime + '] Debug: ' + debugmodulename + ' -> ' + debugmessage);
 };
 
+const PORT = process && process.env && process.env.PORT || 8080
 
 let app = express();
 let router = express.Router();
@@ -88,4 +89,4 @@ app.use((req, res, next) => {
 })
 
 //server.listen(8080);
-app.listen(PORT,()=>{debug(debugmodule, 'Listening on port 8080')});
+app.listen(PORT,()=>{debug(debugmodule, 'Listening on port'+PORT)});

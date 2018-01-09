@@ -50,7 +50,7 @@ obj.getFavourites = function (req,res,next){
             res.render('favouritesDetails',body)
         })
     }else{
-        res.render('favourites',req);
+        res.render('favourites', req);
     }
 }
 obj.getFavouritesDetails = function(req,res,next){
@@ -65,7 +65,9 @@ obj.addFavourites = function(req,res,next){
     let user = req.user;
     let favourites = req.body;
     userBs.addFavourites(user,favourites, (err,body)=>{
-        if(err) next(err)
+        if (err) { 
+            next(err); 
+        }
         res.redirect(303, '/favourites')
     })
 }
@@ -73,7 +75,9 @@ obj.editFavourite = function (req,res,next){
     let user = req.user;
     let id = req.params.id;
     userBs.editFavourites(user,id, (err,body)=>{
-        if(err) next(err)
+        if (err) { 
+            next(err); 
+        }
         res.redirect(303, '/favourites')
     })
 }
@@ -82,7 +86,9 @@ obj.editFavouriteName = function (req,res,next){
     let id = req.params.id;
     let name = req.params.newName;
     userBs.editFavouritesNames(user,id,name, (err,body)=>{
-        if(err) next(err)
+        if (err) { 
+            next(err); 
+        }
         res.redirect(303, '/favourites')
     })
 }
@@ -90,33 +96,38 @@ obj.deleteFavourite = function (req,res,next){
     let user = req.user;
     let id = req.params.id;
     userBs.deleteFavourites(user,id, (err,body)=>{
-        if(err) next(err)
+        if (err) { 
+            next(err); 
+        }
         res.redirect(303, '/favourites')
     })
 }
 
-obj.addComments = function(req,res){
-    let commentId = req.params.commentId;
-    let comment = new entities.comment( req.params.newCommentId,
+obj.addComments = function(req, res){
+    let commentBody = req.body;
+    let commentId = commentBody.commentId || 0;
+    let comment = new entities.comment( 
+        commentBody.movieId + "_" + Math.floor(Math.random() * 1000),
         undefined,
-        req.params.movieId,
-        req.params.comment,
+        commentBody.movieId,
+        commentBody.comment,
         req.user._id,
-        [])
-    if( commentId == 0){
-        userBs.addComments(commentId,comment, (err)=>{
-            if(err) next(err)
-            let json = '{"commentId":"'+ comment._id +'"}';
-            let user = req.user;
-            user.comments.push(JSON.parse(json));
-            userBs.updateUserComments(user,(err)=>{
-                if(err) next(err)
-                res.redirect();
-            })
+        []);
+    if (commentId == 0) {
+        userBs.addComments(commentId, comment,req, (err)=>{
+            if (err) { 
+                next(err); 
+            } else {
+                res.render('movieComment', {layout: false, title: "Comentário", commentId:comment._id, comment:comment.comment, user: req.user, movieId:comment.movieId});
+            }
         });
-    }else{
-        userBs.updateComments(comment,(err)=>{
-
+    } else {
+        userBs.addComments(commentId,comment,req,(err)=>{
+            if (err) { 
+                next(err); 
+            } else {
+                res.render('movieCommentReply', {layout: false,commentId:comment.commentId, comment:comment.comment, user: req.user});
+            }
         });
     }
 }
@@ -124,8 +135,9 @@ obj.addComments = function(req,res){
 obj.getComments = function(req,res){
     let movieId=req.params.movieId;
     userBs.getComments(movieId,(err,body)=>{
-        if(err) next(err)
-
+        if (err) { 
+            next(err); 
+        }
         res.redirect(303,'/moviesDetails/'+movieId,body)
     });
 }

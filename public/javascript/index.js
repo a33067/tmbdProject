@@ -1,47 +1,31 @@
+function showResponseDiv() {
+    var x = document.getElementById("formMovieComment");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 function ajaxRequest(ajaxObject) {
     try { 
-        let xhr = new XMLHttpRequest()
+        let xhr = new XMLHttpRequest();
         xhr.open(ajaxObject.type, ajaxObject.url, ajaxObject.sync ? false : true)
-        xhr.setRequestHeader('Content-Type', ajaxObject.contentType || 'application/json charset=UTF-8')
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 400) {
-                ajaxObject.success && ajaxObject.success(this)
+		//xhr.setRequestHeader('Content-Type', ajaxObject.contentType || 'application/json charset=UTF-8')
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        
+		xhr.send(ajaxObject);
+		xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 400) {
+                ajaxObject.success && ajaxObject.success(xhr.responseText)
             } else {
-                ajaxObject.error && ajaxObject.error(this)
+                ajaxObject.error && ajaxObject.error(xhr.responseText)
             }
-        }
-        xhr.send(ajaxObject.data)
+        };
     } catch(ex) {
         console.error('Error on ajax request --> ' + ex)
     }
     return false
-}
-function addComments(){
-    let commmentText = document.getElementById("comment").value; 
-    let movieId = document.getElementById("movieId").value;
-	let commentId = document.getElementById("commentId").value ==""?0:document.getElementById("commentId").value;
-	let commentIdNewComment = movieId + "_" + Math.floor(Math.random() * 100);
-    return ajaxRequest({
-        type:'POST',
-        url: `/comments/${movieId}/add/${commmentText}/${commentId}/${commentIdNewComment}`,
-        sucess: (ajax) => {
-			console.log(commentId);
-			if(commentId == 0){
-				let newPara = document.createElement('P');
-				let t = document.createTextNode(commentText);
-				newPara.appendChild(t);
-				document.getElementById('commentList').appendChild(newPara);
-			}else{
-				let newLi = document.createElement('LI');
-				let newPara = document.createElement('P');
-				let t = document.createTextNode(commentText)
-				newPara.appendChild(t);
-				newLi.appendChild(newPara);
-				document.getElementById('comments').appendChild(newLi);
-			}
-        }
-    })
-
 }
 
 function editFavourites(){

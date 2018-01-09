@@ -1,0 +1,33 @@
+<li class="commentList" id="moviecomment_{{commentId}}">
+<!--    <div class="commentText">
+        <strong> Comment post by:: </strong>{{user.username}}<br>
+        {{comment}}<br>
+        <button type="button">Replay</button>
+    </div>
+    -->
+    <div class="commenterImage">
+        <h6>{{user.username}}</h6>
+    </div><br>
+    <div class="commentText">
+        <p>{{comment}}</p>
+        <a  href="#" onclick="showResponseDiv()" role="button">Replay</a>
+        <form id="formMovieComment" class="replay form-inline" onsubmit="addResponseMovieComment('formMovieComment'); return false;">
+            <div class="form-group">{{log commentId}}
+                <input class="form-control" type="text" placeholder="Replay Here!" name="comment"/>
+                <input type="hidden" value="{{movieId}}"  name="movieId">
+                <input type="hidden" value="{{commentId}}"  name="commentId">
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="showResponseDiv()" class="btn btn-default">Submit</button>
+            </div>
+        </form></div>
+    <!--{{#each response}}
+        <div class="commenterImage">
+            <h6>Response post by: {{user.username}}</h6>
+        </div>
+        <div class="commentText">
+            <p>{{reply_comment}}</p>
+        </div>
+        
+    {{/each}}-->
+</li>

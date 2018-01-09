@@ -4,9 +4,11 @@ const constants = require('constants');
 module.exports = function(debug,router,url,movieController,searchController,actorController,userController,passport){
     router.use((req, res, next) => { 
         if(req.user !== undefined){
-            res.locals.user = req.user
+            res.locals.user = req.user;
         }
-        next() 
+        console.log(req.url);
+        console.log(req.body);
+        next();
     })
     /**
      * Setup passport
@@ -55,14 +57,18 @@ module.exports = function(debug,router,url,movieController,searchController,acto
     router.get('/favourites',userController.getFavourites);
     router.get('/favouritesDetails/:id',userController.getFavouritesDetails);
     router.get('/favouritesDetails/edit/:id',userController.editFavourite);
+    
+    /* AJAX REQUESTS */
     router.delete('/favouritesDetails/edit/:id',userController.editFavourite);
     router.post('/favouritesDetails/edit/:id/:newName',userController.editFavouriteName);
     router.get('/favourite/delete/:id',userController.deleteFavourite);
     router.delete('/favourite/delete/:id',userController.deleteFavourite);
 
-    router.post('/comments/:movieId/add/:comment/:commentId/:newCommentId',userController.addComments);
+    router.post('/api/comments/:movieId/add', userController.addComments);
     //router.get('/comments/:movieId/add/:comment/:commentId/:newCommentId',(req,res)=>res.render ('moviesDetails'));
-    router.get('/comments/:movieId/add/:comment/:commentId/:newCommentId',userController.getComments);
+    //router.get('/api/comments/:movieId/add/:comment/:commentId/:newCommentId',userController.getComments);
+
+
     // catch 404 and forward to error handler
     router.use(function(req, res, next) {
         const err = new Error('Not Found')

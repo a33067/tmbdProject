@@ -93,18 +93,30 @@ obj.editFavouritesNames = function(user,id,newId,cb){
     couchDB.updateFavourites(user,user._rev,cb);
     
 }
-obj.addComments = function(commentId,comment,cb){
+obj.addComments = function(commentId,comment,req,cb){
     if(commentId ==0){
-        couchDB.addComments(comment,cb);
+        couchDB.addComments(comment,(err)=>{
+            if(err) return cb(err);
+            let json = '{"commentId":"'+ comment._id +'","commentText":"'+comment.comment+'","movieId":"'+comment.movieId+'"}';
+            let user = req.user;
+            user.comments.push(JSON.parse(json));
+            couchDB.updateUserComments(user,user._rev,cb);
+        });
     }else{
-        couchDB.updateComments();
+        let json = '{"commentId":"'+ comment._id +'", "comment":"' + comment.comment +'","user":"'+ comment.userID+'"}';
+        couchDB.getCommentsById(commentId,(err,comment)=>{
+            if(err) return cb(err);
+            comment.responseComments.push(JSON.parse(json))
+            couchDB.updateComments(comment,(err)=>{
+                if(err) return cb(err);
+                let json = '{"commentId":"'+ comment._id +'","commentText":"'+comment.comment+'","movieId":"'+comment.movieId+'"}';
+                let user = req.user;
+                user.comments.push(JSON.parse(json));
+                couchDB.updateUserComments(user,user._rev,cb);
+            });
+        })   
     }
-
 }
-obj.updateUserComments = function(user,cb){
-    couchDB.updateUserComments(user,user._rev,cb);
-}
-
 obj.getComments = function(movieId,cb){
     couchDB.getComments(movieId,(err,body)=>{
         if(err) return cb(err)
@@ -117,7 +129,6 @@ obj.getComments = function(movieId,cb){
             });
             cb(null,comments);
         });
-       
     });
 }
 
