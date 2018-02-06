@@ -32,10 +32,12 @@ CouchDB.find = function (username, cb) {
  * but credentials fail then calls cb with undefined user and an info message.
  */
 CouchDB.authenticate =function (username, passwd, cb) {
-    const path = dbHost+ dbUsers + '/' + username
+    const path = dbHost+ dbUsers + '/' + username;
+    console.log('couchDb: '+path);
     request(path, (err, res, body) => {
         if(err) return cb(err)
         if(res.statusCode != 200) return cb(null, null, `User ${username} does not exists`)
+        console.log(err + 'user: '+user);
         const user = JSON.parse(body)
         if(passwd != user.password) return cb(null, null, 'Invalid password')
         cb(null, user)
