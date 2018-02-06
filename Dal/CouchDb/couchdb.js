@@ -46,7 +46,8 @@ CouchDB.save = function(user, cb) {
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(user)
+        body:JSON.stringify(user),
+        auth: option.user + ':' + option.pass
     }
     _request(path,options,cb);
 }
