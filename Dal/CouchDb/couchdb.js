@@ -135,6 +135,7 @@ CouchDB.getComments = function(movieId,cb){
 function _request(path,options,cb){
     request(path,options, (err, res, body) => {
         if(err) return cb(err)
+        console.log(err + ' bod: ' + body)
         cb()
     })
 }
