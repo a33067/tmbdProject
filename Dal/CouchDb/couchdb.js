@@ -35,7 +35,7 @@ CouchDB.authenticate =function (username, passwd, cb) {
     const path = dbHost+ dbUsers + '/' + username;
     console.log('couchDb: '+path);
     request(path, (err, res, body) => {
-        console.log(err + 'user: '+user);
+        console.log(err + 'user: '+body);
         if(err) return cb(err)
         if(res.statusCode != 200) return cb(null, null, `User ${username} does not exists`)
         console.log(err + 'user: '+user);
