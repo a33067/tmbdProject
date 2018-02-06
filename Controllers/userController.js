@@ -40,6 +40,7 @@ obj.getSignUp = function(req,res,next){
         [],[])
         userBs.createUser(user, (err,body)=>{
             if(err) next(err)
+            console.log(err + ' bod: ' + body)
             res.redirect(303, '/signIn')
         })
 }
