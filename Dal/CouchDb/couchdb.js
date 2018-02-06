@@ -49,7 +49,7 @@ CouchDB.save = function(user, cb) {
         method: "PUT",
         'Content-Type': 'application/json',
         body:JSON.stringify(user),
-        auth: user + ':' + pass
+        auth: dbUser + ':' + dbPass
     }
     _request(path,options,cb);
 }
