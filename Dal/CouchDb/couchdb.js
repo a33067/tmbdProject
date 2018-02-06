@@ -42,6 +42,7 @@ CouchDB.authenticate =function (username, passwd, cb) {
 
 CouchDB.save = function(user, cb) {
     const path =dbHost+ dbUsers + '/' +  user.username;  
+    console.log('couchDb: '+path);
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
