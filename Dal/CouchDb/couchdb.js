@@ -101,7 +101,7 @@ CouchDB.getCommentsById = function(comment,cb){
     const options = {
         method: "GET",
         'Content-Type': 'application/json',
-        body:JSON.stringify(comment)
+      //  body:JSON.stringify(comment)
     }
     request(path, (err, res, body) => {
         if(err) return cb(err)

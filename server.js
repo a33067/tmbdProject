@@ -89,4 +89,4 @@ app.use((req, res, next) => {
 })
 
 //server.listen(8080);
-app.listen(PORT,()=>{debug(debugmodule, 'Listening on port'+PORT)});
+app.listen(PORT,()=>{debug(debugmodule, 'Listening on port '+PORT)});
