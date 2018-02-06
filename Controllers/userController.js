@@ -39,12 +39,8 @@ obj.getSignUp = function(req,res,next){
         req.body.email,
         [],[])
         userBs.createUser(user, (err,body)=>{
-            if(err){
-                debug(debugmodule, 'Error: ' + err);
-                next(err)
-            }Else {
-                res.redirect( 303,'/signIn')
-            }
+            if(err) next(err)
+            res.redirect(303, '/signIn')
         })
 }
 obj.getFavourites = function (req,res,next){
