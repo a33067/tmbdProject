@@ -10,6 +10,8 @@ const dbComments = dbHost+'tmdbproject_comments';*/
 const dbHost = process.env.dbHost || 'http://127.0.0.1:5984/';
 const dbUsers = process.env.dbUsers || 'tmdbproject_users';
 const dbComments =  process.env.dbComments || 'tmdbproject_comments';
+const dbUser = process.env.dbUser || 'tmbdProject';
+const dbPass = process.env.dbPass || 'tmbdProject';
 const request = require('request')
 var CouchDB = {}
 
@@ -47,7 +49,7 @@ CouchDB.save = function(user, cb) {
         method: "PUT",
         'Content-Type': 'application/json',
         body:JSON.stringify(user),
-        auth: option.user + ':' + option.pass
+        auth: user + ':' + pass
     }
     _request(path,options,cb);
 }
