@@ -19,7 +19,7 @@ module.exports = function(debug,router,url,movieController,searchController,acto
             userController.getSignIn(req, res, (err, data, info) => {
                 if(err) return this.fail({message: err})
                 if(!data) return this.fail({message: errorMsg})
-                console.log('login: '+data.user);
+                console.log('login: '+data.username);
                 if(data.password !== req.body.password)return this.fail({message: errorMsg})
                 this.success(data)
             })
