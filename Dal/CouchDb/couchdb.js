@@ -47,12 +47,12 @@ CouchDB.authenticate =function (username, passwd, cb) {
     } else if (user) {
         options.auth = user
     }*/
-    console.log('user: '+user+' pass: '+pass);
+    
     request(path, options,(err, res, body) => {
-        console.log(err + 'user: '+body);
+       
         if(err) return cb(err)
         if(res.statusCode != 200) return cb(null, null, `User ${username} does not exists`)
-        console.log(err + 'user: '+user);
+        console.log(err + 'user: '+body);
         const user = JSON.parse(body)
         if(passwd != user.password) return cb(null, null, 'Invalid password')
         cb(null, user)
