@@ -9,9 +9,13 @@ const dbUsers = dbHost+'tmdbproject_users';
 const dbComments = dbHost+'tmdbproject_comments';*/
 const dbHost = process.env.dbHost || 'http://127.0.0.1:5984/';
 const dbUsers = process.env.dbUsers || 'tmdbprojectusers';
-const dbComments =  process.env.dbComments || 'tmdbproject_comments';
-const userDb = process.env.users || 'jcnasc.90';
+const dbComments =  process.env.dbComments || 'tmdbprojectcomments';
+const userDb = process.env.userDb || 'jcnasc.90';
 const pass = process.env.dbPass || 'KqxxFWVxv4';
+
+const userDb2 = process.env.users2 || 'jcnasc.90';
+const pass2 = process.env.dbPass2 || 'KqxxFWVxv4';
+
 const request = require('request')
 var CouchDB = {}
 
@@ -120,7 +124,7 @@ CouchDB.updateFavourites = function(user, params, cb){
 
 CouchDB.addComments = function (comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
-    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
     
     const options = {
         method: "PUT",
@@ -135,7 +139,7 @@ CouchDB.addComments = function (comment,cb){
 
 CouchDB.updateComments = function(comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
-    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
     
     const options = {
         method: "PUT",
@@ -150,7 +154,7 @@ CouchDB.updateComments = function(comment,cb){
 
 CouchDB.getCommentsById = function(comment,cb){
     const path = dbHost+dbComments + '/' +  comment;  
-    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
     
     const options = {
         method: "GET",
@@ -167,7 +171,7 @@ CouchDB.getCommentsById = function(comment,cb){
 }
 CouchDB.getComments = function(movieId,cb){
     const path = dbHost+dbComments + '/_all_docs';
-    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
     const options = {
         headers : {
             "Authorization" : auth
