@@ -36,7 +36,7 @@ module.exports = function(debug,router,url,movieController,searchController,acto
     
     
     router.get('/',userController.getHomePage);
-    router.get('/signIn',(req,res)=>res.render ('signIn'));
+    router.get('/signIn',(req,res)=>res.render ('signIn',res.locals.user));
     router.post('/signIn',passport.authenticate('basic', {
         successRedirect: '/',
         failureRedirect: '/signIn',
