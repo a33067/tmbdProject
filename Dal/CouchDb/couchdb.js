@@ -18,6 +18,13 @@ var CouchDB = {}
 
 CouchDB.find = function (username, cb) {
     const path = dbHost+ dbUsers + '/' + username
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
+    const options = {
+        headers : {
+            "Authorization" : auth
+        }
+    }
     request(path, (err, res, body) => {
         if(err) return cb(err)
         cb(null, JSON.parse(body))
@@ -78,10 +85,15 @@ CouchDB.save = function(user, cb) {
 CouchDB.updateUserComments = function(user,params,cb){
     let query = params ? '?' + params : '';
     const path = dbHost+ dbUsers + '/' +  user.username + '/' + query;  
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(user)
+        body:JSON.stringify(user),
+        headers : {
+            "Authorization" : auth
+        }
     }
     request(path,options, (err, res, body) => {
         if(err) return cb(err)
@@ -92,10 +104,15 @@ CouchDB.updateUserComments = function(user,params,cb){
 CouchDB.updateFavourites = function(user, params, cb){
     let query = params ? '?' + params : '';
     const path = dbHost+ dbUsers + '/' +  user.username + '/' + query;  
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(user)
+        body:JSON.stringify(user),
+        headers : {
+            "Authorization" : auth
+        }
     }
     _request(path,options,cb);
 }
@@ -103,29 +120,44 @@ CouchDB.updateFavourites = function(user, params, cb){
 
 CouchDB.addComments = function (comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(comment)
+        body:JSON.stringify(comment),
+        headers : {
+            "Authorization" : auth
+        }
     }
     _request(path,options,cb);
 }
 
 CouchDB.updateComments = function(comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(comment)
+        body:JSON.stringify(comment),
+        headers : {
+            "Authorization" : auth
+        }
     }
     _request(path,options,cb);
 }
 
 CouchDB.getCommentsById = function(comment,cb){
     const path = dbHost+dbComments + '/' +  comment;  
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    
     const options = {
         method: "GET",
         'Content-Type': 'application/json',
+        headers : {
+            "Authorization" : auth
+        }
       //  body:JSON.stringify(comment)
     }
     request(path, (err, res, body) => {
@@ -135,6 +167,13 @@ CouchDB.getCommentsById = function(comment,cb){
 }
 CouchDB.getComments = function(movieId,cb){
     const path = dbHost+dbComments + '/_all_docs';
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    const options = {
+        headers : {
+            "Authorization" : auth
+       }
+      //  body:JSON.stringify(comment)
+    }
     request(path, (err, res, body) => {
         if(err) return cb(err)
         let bodyAux=JSON.parse(body);
