@@ -10,8 +10,8 @@ const dbComments = dbHost+'tmdbproject_comments';*/
 const dbHost = process.env.dbHost || 'http://127.0.0.1:5984/';
 const dbUsers = process.env.dbUsers || 'tmdbprojectusers';
 const dbComments =  process.env.dbComments || 'tmdbproject_comments';
-const dbUser = process.env.dbUser || 'tmbdProject';
-const dbPass = process.env.dbPass || 'tmbdProject';
+const user = process.env.dbUser || 'jcnasc.90';
+const pass = process.env.dbPass || 'KqxxFWVxv4';
 const request = require('request')
 var CouchDB = {}
 
@@ -35,8 +35,15 @@ CouchDB.authenticate =function (username, passwd, cb) {
     const path = dbHost+ dbUsers + '/' + username;
     console.log('couchDb: '+path);
     const options = {
-        auth: dbUser + ':' + dbPass
+        auth:""
     }
+   // authentication
+    if (user && pass) {
+        options.auth = user + ':' + pass
+    } else if (user) {
+        options.auth = user
+    }
+    console.log('user: '+user+' pass: '+pass);
     request(path, options,(err, res, body) => {
         console.log(err + 'user: '+body);
         if(err) return cb(err)
