@@ -6,8 +6,6 @@ module.exports = function(debug,router,url,movieController,searchController,acto
         if(req.user !== undefined){
             res.locals.user = req.user;
         }
-        console.log(req.url);
-        console.log(req.body);
         next();
     })
     /**
@@ -21,6 +19,7 @@ module.exports = function(debug,router,url,movieController,searchController,acto
             userController.getSignIn(req, res, (err, data, info) => {
                 if(err) return this.fail({message: err})
                 if(!data) return this.fail({message: errorMsg})
+                console.log('login: '+data);
                 if(data.password !== req.body.password)return this.fail({message: errorMsg})
                 this.success(data)
             })
