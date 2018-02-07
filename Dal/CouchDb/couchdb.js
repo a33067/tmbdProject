@@ -10,7 +10,7 @@ const dbComments = dbHost+'tmdbproject_comments';*/
 const dbHost = process.env.dbHost || 'http://127.0.0.1:5984/';
 const dbUsers = process.env.dbUsers || 'tmdbprojectusers';
 const dbComments =  process.env.dbComments || 'tmdbproject_comments';
-const user = process.env.users || 'jcnasc.90';
+const userDb = process.env.users || 'jcnasc.90';
 const pass = process.env.dbPass || 'KqxxFWVxv4';
 const request = require('request')
 var CouchDB = {}
@@ -34,15 +34,19 @@ CouchDB.find = function (username, cb) {
 CouchDB.authenticate =function (username, passwd, cb) {
     const path = dbHost+ dbUsers + '/' + username;
     console.log('couchDb: '+path);
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+
     const options = {
-        auth:""
+        headers : {
+            "Authorization" : auth
+        }
     }
    // authentication
-    if (user && pass) {
+   /* if (user && pass) {
         options.auth = user + ':' + pass
     } else if (user) {
         options.auth = user
-    }
+    }*/
     console.log('user: '+user+' pass: '+pass);
     request(path, options,(err, res, body) => {
         console.log(err + 'user: '+body);
@@ -58,11 +62,15 @@ CouchDB.authenticate =function (username, passwd, cb) {
 CouchDB.save = function(user, cb) {
     const path =dbHost+ dbUsers + '/' +  user.username;  
     console.log('couchDb: '+path);
+    const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+
     const options = {
         method: "PUT",
         'Content-Type': 'application/json',
-        body:JSON.stringify(user)
-      //  auth: dbUser //+ ':' + dbPass
+        body:JSON.stringify(user),
+        headers : {
+            "Authorization" : auth
+        }
     }
     _request(path,options,cb);
 }
