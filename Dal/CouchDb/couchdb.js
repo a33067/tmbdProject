@@ -23,6 +23,7 @@ var CouchDB = {}
 CouchDB.find = function (username, cb) {
     const path = dbHost+ dbUsers + '/' + username
     const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    console.log('couchDb find: '+path);
     
     const options = {
         headers : {
@@ -44,7 +45,7 @@ CouchDB.find = function (username, cb) {
  */
 CouchDB.authenticate =function (username, passwd, cb) {
     const path = dbHost+ dbUsers + '/' + username;
-    console.log('couchDb: '+path);
+    console.log('couchDb authenticate: '+path);
     const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
 
     const options = {
@@ -72,7 +73,7 @@ CouchDB.authenticate =function (username, passwd, cb) {
 
 CouchDB.save = function(user, cb) {
     const path =dbHost+ dbUsers + '/' +  user.username;  
-    console.log('couchDb: '+path);
+    console.log('couchDb save: '+path);
     const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
 
     const options = {
@@ -90,6 +91,7 @@ CouchDB.updateUserComments = function(user,params,cb){
     let query = params ? '?' + params : '';
     const path = dbHost+ dbUsers + '/' +  user.username + '/' + query;  
     const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    console.log('couchDb updateUserComments: '+path);
     
     const options = {
         method: "PUT",
@@ -109,6 +111,7 @@ CouchDB.updateFavourites = function(user, params, cb){
     let query = params ? '?' + params : '';
     const path = dbHost+ dbUsers + '/' +  user.username + '/' + query;  
     const auth="Basic " + new Buffer(userDb + ":" + pass).toString("base64");
+    console.log('couchDb updateFavourites: '+path);
     
     const options = {
         method: "PUT",
@@ -125,6 +128,7 @@ CouchDB.updateFavourites = function(user, params, cb){
 CouchDB.addComments = function (comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
     const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
+    console.log('couchDb addComments: '+path);
     
     const options = {
         method: "PUT",
@@ -140,6 +144,7 @@ CouchDB.addComments = function (comment,cb){
 CouchDB.updateComments = function(comment,cb){
     const path = dbHost+ dbComments + '/' +  comment._id;  
     const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
+    console.log('couchDb updateComments: '+path);
     
     const options = {
         method: "PUT",
@@ -155,6 +160,7 @@ CouchDB.updateComments = function(comment,cb){
 CouchDB.getCommentsById = function(comment,cb){
     const path = dbHost+dbComments + '/' +  comment;  
     const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
+    console.log('couchDb getCommentsById: '+path);
     
     const options = {
         method: "GET",
@@ -172,6 +178,8 @@ CouchDB.getCommentsById = function(comment,cb){
 CouchDB.getComments = function(movieId,cb){
     const path = dbHost+dbComments + '/_all_docs';
     const auth="Basic " + new Buffer(userDb2 + ":" + pass2).toString("base64");
+    console.log('couchDb getComments: '+path);
+    
     const options = {
         headers : {
             "Authorization" : auth
