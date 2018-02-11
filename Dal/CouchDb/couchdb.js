@@ -30,7 +30,7 @@ CouchDB.find = function (username, cb) {
             "Authorization" : auth
         }
     }
-    request(path, (err, res, body) => {
+    request(path,options, (err, res, body) => {
         if(err) return cb(err)
         cb(null, JSON.parse(body))
     })
