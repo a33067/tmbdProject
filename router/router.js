@@ -4,6 +4,7 @@ const constants = require('constants');
 module.exports = function(debug,router,url,movieController,searchController,actorController,userController,passport){
     router.use((req, res, next) => { 
         if(req.user !== undefined){
+            console.log("res.locals: " + req.user);
             res.locals.user = req.user;
         }
         next();
