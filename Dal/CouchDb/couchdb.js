@@ -13,8 +13,8 @@ const dbComments =  process.env.dbComments || 'tmdbprojectcomments';
 const userDb = process.env.userDb || 'jcnasc.90';
 const pass = process.env.dbPass || 'KqxxFWVxv4';
 
-const userDb2 = process.env.users2 || 'jcnasc.90';
-const pass2 = process.env.dbPass2 || 'KqxxFWVxv4';
+const userDb2 = process.env.userDb2 || 'fcoracaonas';
+const pass2 = process.env.dbPass2 || 'aWLf9qnYji';
 
 const request = require('request')
 var CouchDB = {}
