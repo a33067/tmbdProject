@@ -28,7 +28,7 @@ obj.find = function(username,next){
     
 }
 obj.getUserHomepage = function(req,res){
-    let user = JSON.stringify(req);
+    let user = JSON.stringify(req.user);
     console.log('getUSerHomePage: ' + user);
     res.render('userHomePage',user);
 }
